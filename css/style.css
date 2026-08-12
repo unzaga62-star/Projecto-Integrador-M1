@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-bg: hsl(220, 20%, 97%);
+    --color-surface: hsl(0, 0%, 100%);
+    --color-text: hsl(222, 47%, 11%);
+    --color-muted: hsl(215, 16%, 47%);
+    --color-primary: hsl(221, 83%, 53%);
+    --color-primary-dark: hsl(221, 83%, 43&);
+    --radius-md: 8px;
+    --shadow-md: 0 8px 24px hsla (222, 11%, 0.00);
+}
+
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    line-height: 1.6;
+    
+}
+
+
+.contenedor {
+    width: min(100% - 2rem, 1200px);
+    margin-inline: auto;
+}
+
