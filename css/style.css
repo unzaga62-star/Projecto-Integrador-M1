@@ -7,7 +7,7 @@
 :root {
     --color-bg: hsl(220, 20%, 97%);
     --color-surface: hsl(0, 0%, 100%);
-    --color-text: hsl(222, 47%, 11%);
+    --color-text: hsl(220, 10%, 11%);
     --color-muted: hsl(215, 16%, 47%);
     --color-primary: hsl(221, 83%, 53%);
     --color-primary-dark: hsl(221, 83%, 43&);
