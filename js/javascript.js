@@ -32,24 +32,28 @@ ContenedorPaleta.innerHTML= "";
 for (let i = 0; i < cantidad; i++) {
     const tarjeta = document.createElement("article");
     const divInfo= document.createElement("div");
-    const titulo = document.createElement("h3")
+    const titulo = document.createElement("h3");
     const descripcion = document.createElement("p");
     const botonCopiar = document.createElement ("button")
 
 
-const colorAleatorio = generarColorHex();
+    const colorAleatorio = generarColorHex();
 
-tarjeta.style.backgroundColor = colorAleatorio;
-tarjeta.classList.add ("color-tarjeta");
+    tarjeta.style.backgroundColor = colorAleatorio;
+    tarjeta.classList.add ("color-tarjeta");
 
-titulo.textContent = colorAleatorio;
-descripcion.textContent = "Copiar";
+    titulo.textContent = colorAleatorio;
+    descripcion.textContent = "Copiar";
 
-botonCopiar.textContent = "Copiar";
-botonCopiar.classList.add("boton");
+    botonCopiar.textContent = "Copiar";
+    botonCopiar.classList.add("boton");
+
+    botonCopiar.addEventListener("click",function() {
+        console.log("color copiadoo")
+
+})
 
 divInfo.appendChild (titulo);
-divInfo.appendChild(descripcion);
 tarjeta.appendChild(divInfo);
 divInfo.appendChild(botonCopiar);
 
@@ -62,5 +66,3 @@ BotonGenerar.addEventListener("click",renderizarPaleta);
 
 renderizarPaleta();
 
-botonCopiar.addEventListener("click")
-console.log("coloor copiadoo")

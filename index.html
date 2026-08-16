@@ -17,12 +17,16 @@
       <h1 class="titulo-principal">Paleta de colores</h1>
       <p class="descripcion">Crea una paleta de 0 de forma aleatoria</p>
     </div>
+
+    <nav class="nav">
+        <a href="#" class="nav-favoritos"> Mis favoritos</a>
+    </nav>
   </header>
 
   
   <section class="Selector">
-    <div class="PanelCnotrol">
-        <label for="selector-cantidad">cantidad de colores</label>
+    <div class="PanelControl">
+        <label for="selector-cantidad">Cantidad de colores</label>
     
     <select id="selector-cantidad">
         <option value= "6">6 colores</option>
@@ -39,8 +43,17 @@
   <!-- CONTENEDOR PRINCIPAL -->
   <main class="contenedor">
     <!-- BOX DE COLORES -->
-    <section id="contenedor-paleta" class="seccion-color"></section>
-    </main>
+    <section class="contenedor-paleta" id="contenedor-paleta">
+
+        <article class="color-tarjeta">
+            <div class="color-info">
+                <h2 class="codigo-ccolor"></h2>
+            </div>
+        </article>   
+    </section>
+
+
+</main>
 
 
       
