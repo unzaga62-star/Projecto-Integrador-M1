@@ -15,7 +15,7 @@
   <header class="header">
     <div class="header-contenido">
       <h1 class="titulo-principal">Paleta de colores</h1>
-      <p class="descripcion">Crea una paleta de 0 de forma aleatoria</p>
+      <p class="descripcion">Crea una paleta de forma aleatoria</p>
     </div>
 
     <nav class="nav">
@@ -23,9 +23,14 @@
     </nav>
   </header>
 
-  
-  <section class="Selector">
-    <div class="PanelControl">
+
+
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <main class="contenedor">
+    
+  <section class="selector">
+    <div class="panel-control">
         <label for="selector-cantidad">Cantidad de colores</label>
     
     <select id="selector-cantidad">
@@ -34,25 +39,32 @@
         <option value= "9">9 colores</option>
     </select>
 
-      <button id="GenerarPaleta">Generar paleta</button>
+      <button id="generar-paleta">Generar paleta</button>
+      <button id="guardar-paleta">Guardar paleta</button>
     </div>
   </section>
-
-
-
-  <!-- CONTENEDOR PRINCIPAL -->
-  <main class="contenedor">
+    
     <!-- BOX DE COLORES -->
     <section class="contenedor-paleta" id="contenedor-paleta">
+      </section>
 
-        <article class="color-tarjeta">
-            <div class="color-info">
-                <h2 class="codigo-ccolor"></h2>
-            </div>
-        </article>   
-    </section>
+     <div class="popup oculto" id="popup-guardar">
+      <div class="popup-contenido">
+        
+        <h2>Guardar paleta</h2>
+        <label for="nombre-paleta">Nombre de la paleta</label>
 
+        <input
+          type="text"
+          id="nombre-paleta"
+          placeholder="Ej: Paleta de verano"
+          >
+        <button id="guardar">Guardar</button>
+        <button id="cancelar">Cancelar</button>
 
+      </div>
+
+     </div>
 </main>
 
 

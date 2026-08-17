@@ -10,7 +10,7 @@
     --color-text: hsl(0, 0%, 0%);
     --color-muted: hsl(215, 16%, 47%);
     --color-primary: hsl(221, 83%, 53%);
-    --color-primary-dark: hsl(221, 83%, 43&);
+    --color-primary-dark: hsl(221, 83%, 43%);
     --radius-md: 8px;
     --shadow-md: 0 8px 24px hsla (222, 11%, 0.00);
 }
@@ -64,7 +64,43 @@ body {
     align-items: center;
     padding: 20px;
 
-    transition: flex 0.3 ease;
+    transition: flex 0.3s ease;
 
 }
 
+.color-info {
+   text-align: center;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.oculto {
+    display:none;
+}
+
+.popup-contenido {
+    background-color: blue;
+    padding: 300px;
+    border-radius: 8px;
+}
+
+
+.botones-pop-up {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+
+}
