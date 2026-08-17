@@ -102,5 +102,11 @@ body {
     justify-content: center;
     gap: 30px;
     margin-top: 10px;
+}
 
+.guardados-recientes {
+    padding: 20px;
+    margin-left: 0;
+    font-size: 0.75rem;
+    
 }

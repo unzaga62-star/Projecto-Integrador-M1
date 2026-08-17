@@ -100,5 +100,6 @@ botonpopupGuardar.addEventListener("click",function() {
     console.log(paletaGuardada);
 });
 
+
 renderizarPaleta()
 
