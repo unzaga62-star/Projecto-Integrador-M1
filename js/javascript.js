@@ -8,6 +8,8 @@ const botonpopupGuardar= document.getElementById("guardar");
 const botonpopupCancelar= document.getElementById("cancelar");
 const popup= document.getElementById("popup-guardar");
 const nombrePaleta= document.getElementById("nombre-paleta");
+const listaGuardados = document.getElementById("lista-guardados");
+const mensajeGuardado= document.getElementById("mensaje-guardado")
 
 let paletaActual=[];
 
@@ -51,7 +53,7 @@ for (let i = 0; i < cantidad; i++) {
 
     tarjeta.classList.add ("color-tarjeta");
     
-    divInfo.classList.add("color-info")
+    divInfo.classList.add("color-info");
 
     titulo.textContent = colorAleatorio;
 
@@ -59,7 +61,7 @@ for (let i = 0; i < cantidad; i++) {
     botonCopiar.classList.add("boton");
 
     botonCopiar.addEventListener("click",function() {
-        console.log("color copiado")
+        console.log("color copiado");
 
 })
 
@@ -92,14 +94,101 @@ botonpopupGuardar.addEventListener("click",function() {
         colores: paletaActual,
     };
 
+    const datosGuardados = localStorage.getItem("paletas");
+
+    let paletasGuardadas;
+
+    if(datosGuardados) {
+        paletasGuardadas = JSON.parse(datosGuardados);
+    } else {
+        paletasGuardadas =[]
+    }
+
+    paletasGuardadas.push(paletaGuardada);
+
     localStorage.setItem(
-        "paleta",
-        JSON.stringify(paletaGuardada)
+        "paletas",
+        JSON.stringify(paletasGuardadas)
     );
 
-    console.log(paletaGuardada);
-});
+    
+    //
+
+    renderizarGuardados ();
+
+    //Cierra pop up de guardar
+    popup.classList.add("oculto");
 
 
-renderizarPaleta()
+    //Mensaje box
+
+    mensajeGuardado.classList.remove("oculto");
+
+    //Efecto para que cierre post 1 segundo
+
+    setTimeout(function() {
+        mensajeGuardado.classList.add("oculto");
+    }, 1000);
+
+    console.log(paletasGuardadas);
+})
+
+
+function renderizarGuardados() {
+    const datosGuardados = localStorage.getItem ("paletas");
+    
+    if(!datosGuardados) {
+        return;
+    }
+    
+    const paletasGuardadas = JSON.parse (datosGuardados);
+
+    
+    listaGuardados.innerHTML="";
+
+    for (let i = 0; i < paletasGuardadas.length; i++) {
+
+    const paletaGuardada = paletasGuardadas[i];
+
+    const tarjetaGuardada = document.createElement("article");
+    const tituloGuardado = document.createElement("h3");
+    const miniColores = document.createElement("div");
+    const accionesGuardado = document.createElement("div");
+    const botonCopiarPaletaGuardado = document.createElement("button");
+
+
+    accionesGuardado.classList.add ("acciones-guardado");
+
+    botonCopiarPaletaGuardado.textContent="Copiar";
+    botonCopiarPaletaGuardado.classList.add("boton-copiar-paleta");
+
+    tarjetaGuardada.classList.add("paleta-guardada");
+    miniColores.classList.add("mini-colores");
+
+    tituloGuardado.textContent = paletaGuardada.nombre;
+
+    for (let j = 0; j < paletaGuardada.colores.length; j++) {
+
+    const miniColor=document.createElement("div");
+
+    miniColor.style.backgroundColor = paletaGuardada.colores[j];
+    miniColor.classList.add("mini-color");
+
+    miniColores.appendChild(miniColor);
+    
+    }
+
+
+accionesGuardado.appendChild(botonCopiarPaletaGuardado);
+
+tarjetaGuardada.appendChild(tituloGuardado);
+tarjetaGuardada.appendChild(miniColores);
+tarjetaGuardada.appendChild(accionesGuardado);
+
+listaGuardados.appendChild(tarjetaGuardada);
+    }
+}
+renderizarPaleta();
+
+renderizarGuardados();
 
