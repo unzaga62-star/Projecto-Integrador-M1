@@ -62,7 +62,7 @@ permanecen disponibles aunque se recargue la página.
 > del proyecto.
 
 
-#PROMPT IA
+##PROMPT IA Y FOTOS
 
 https://drive.google.com/drive/folders/1RpHO1DUfxokdBx4t57fvraMFyfh4gv1D?usp=sharing
 
