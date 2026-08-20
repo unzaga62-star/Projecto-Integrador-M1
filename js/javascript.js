@@ -9,7 +9,8 @@ const botonpopupCancelar= document.getElementById("cancelar");
 const popup= document.getElementById("popup-guardar");
 const nombrePaleta= document.getElementById("nombre-paleta");
 const listaGuardados = document.getElementById("lista-guardados");
-const mensajeGuardado= document.getElementById("mensaje-guardado")
+const mensajeGuardado= document.getElementById("mensaje-guardado");
+const errorNombre = document.getElementById("error-nombre");
 
 let paletaActual=[];
 
@@ -32,6 +33,69 @@ for (let i = 0; i < 6; i++) {
 return color;
 }
 
+function convertirHexAHsl(colorHex) {
+
+    const rojo = parseInt(colorHex.substring(1, 3), 16) / 255;
+    const verde = parseInt(colorHex.substring(3, 5), 16) / 255;
+    const azul = parseInt(colorHex.substring(5, 7), 16) / 255;
+
+    const max = Math.max(rojo, verde, azul);
+    const min = Math.min(rojo, verde, azul);
+
+    let h = 0;
+    let s = 0;
+
+    const l = (max + min) / 2;
+
+    if (max !== min) {
+
+        const diferencia = max - min;
+
+        if (l > 0.5) {
+            s = diferencia / (2 - max - min);
+        } else {
+            s = diferencia / (max + min);
+        }
+
+        if (max === rojo) {
+            h = (verde - azul) / diferencia;
+
+            if (verde < azul) {
+                h = h + 6;
+            }
+
+        } else if (max === verde) {
+            h = (azul - rojo) / diferencia + 2;
+
+        } else {
+            h = (rojo - verde) / diferencia + 4;
+        }
+
+        h = h / 6;
+    }
+
+    h = Math.round(h * 360);
+    s = Math.round(s * 100);
+    const luminosidad = Math.round(l * 100);
+
+    return "hsl(" + h + ", " + s + "%, " + luminosidad + "%)";
+}
+
+function obtenerColorTexto(colorHex) {
+
+    const rojo = parseInt(colorHex.substring(1, 3), 16);
+    const verde = parseInt(colorHex.substring(3, 5), 16);
+    const azul = parseInt(colorHex.substring(5, 7), 16);
+
+    const brillo = (rojo + verde + azul) / 3;
+
+    if (brillo > 128) {
+        return "#000000";
+    } else {
+        return "#FFFFFF";
+    }
+}
+
 console.log("color aleatorio de prueba:", generarColorHex());
 
 function renderizarPaleta() {
@@ -49,23 +113,43 @@ for (let i = 0; i < cantidad; i++) {
     const colorAleatorio = generarColorHex();
     paletaActual.push(colorAleatorio);
 
+    // CONVERTIR EL HEX A HSL
+    const colorHsl = convertirHexAHsl(colorAleatorio);
+
+    console.log(colorAleatorio, colorHsl);
+
+    const colorTexto = obtenerColorTexto(colorAleatorio);
+
     tarjeta.style.backgroundColor = colorAleatorio;
+
+    tarjeta.style.color = colorTexto;
 
     tarjeta.classList.add ("color-tarjeta");
     
     divInfo.classList.add("color-info");
 
     titulo.textContent = colorAleatorio;
+    descripcion.textContent = colorHsl;
 
-    botonCopiar.textContent = "Copiar";
+    botonCopiar.textContent = "COPIAR";
     botonCopiar.classList.add("boton");
 
-    botonCopiar.addEventListener("click",function() {
-        console.log("color copiado");
+    botonCopiar.addEventListener("click", function() {
 
-})
+        navigator.clipboard.writeText(colorAleatorio);
+    
+        botonCopiar.textContent = "¡COPIADO!";
+    
+        setTimeout(function() {
+            botonCopiar.textContent = "COPIAR";
+        }, 1000);
+    
+    });
+
+
 
 divInfo.appendChild (titulo);
+divInfo.appendChild(descripcion);
 divInfo.appendChild(botonCopiar);
 
 tarjeta.appendChild(divInfo);
@@ -83,11 +167,20 @@ GuardarPaleta.addEventListener("click",function() {
 });
 
 botonpopupCancelar.addEventListener("click",function() {
-    popup.classList.add("oculto")
+    popup.classList.add("oculto");
+    errorNombre.textContent = "";
+    nombrePaleta.value = "";
 });
 
 botonpopupGuardar.addEventListener("click",function() {
-    const nombre = nombrePaleta.value;
+    const nombre = nombrePaleta.value.trim();
+
+    if (nombre === "") {
+        errorNombre.textContent = "Debes escribir un nombre para la paleta";
+        return;
+    }
+
+    errorNombre.textContent = "";
 
     const paletaGuardada = { 
         nombre: nombre,
@@ -116,6 +209,9 @@ botonpopupGuardar.addEventListener("click",function() {
 
     renderizarGuardados ();
 
+    //LIIMPIA EL TEXTO DEL POP UP
+    nombrePaleta.value = "";
+
     //Cierra pop up de guardar
     popup.classList.add("oculto");
 
@@ -128,7 +224,7 @@ botonpopupGuardar.addEventListener("click",function() {
 
     setTimeout(function() {
         mensajeGuardado.classList.add("oculto");
-    }, 1000);
+    }, 1200);
 
     console.log(paletasGuardadas);
 })
@@ -138,6 +234,7 @@ function renderizarGuardados() {
     const datosGuardados = localStorage.getItem ("paletas");
     
     if(!datosGuardados) {
+        listaGuardados.textContent = "Todavía no guardaste paletas.";
         return;
     }
     
@@ -159,8 +256,22 @@ function renderizarGuardados() {
 
     accionesGuardado.classList.add ("acciones-guardado");
 
-    botonCopiarPaletaGuardado.textContent="Copiar";
+    botonCopiarPaletaGuardado.textContent="COPIAR";
     botonCopiarPaletaGuardado.classList.add("boton-copiar-paleta");
+
+    botonCopiarPaletaGuardado.addEventListener("click", function() {
+
+        const coloresCopiar = paletaGuardada.colores.join(", ");
+    
+        navigator.clipboard.writeText(coloresCopiar);
+    
+        botonCopiarPaletaGuardado.textContent = "¡COPIADO!";
+    
+        setTimeout(function() {
+            botonCopiarPaletaGuardado.textContent = "COPIAR";
+        }, 1000);
+    
+    });
 
     tarjetaGuardada.classList.add("paleta-guardada");
     miniColores.classList.add("mini-colores");
@@ -188,6 +299,7 @@ tarjetaGuardada.appendChild(accionesGuardado);
 listaGuardados.appendChild(tarjetaGuardada);
     }
 }
+
 renderizarPaleta();
 
 renderizarGuardados();

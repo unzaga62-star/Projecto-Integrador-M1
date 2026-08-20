@@ -5,16 +5,18 @@
 }
 
 :root {
-    --color-bg: hsl(220, 20%, 97%);
+    --color-bg: hsl(220, 50%, 86%);
     --color-surface: hsl(0, 0%, 100%);
     --color-text: hsl(0, 0%, 0%);
     --color-muted: hsl(215, 16%, 47%);
-    --color-primary: hsl(221, 83%, 53%);
+    --color-primary: rgb(3, 61, 137);
+    --color-operacion-confirmada: rgb(22, 100, 7);
+    --color-button: rgb(5, 99, 223);
     --color-primary-dark: hsl(221, 83%, 43%);
     --radius-md: 8px;
     --shadow-md: 0 8px 24px hsla (222, 11%, 0.00);
 }
-
+/* TEXTO PALETA DE COLORS*/
 .header {
     display:flex;
     justify-content: space-between;
@@ -39,64 +41,92 @@ body {
     
 }
 
-.panel-control {
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  gap: 0.5rem;
-  padding: 1rem;
+.panel-control h2 {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 4rem;
+    margin: 0.5rem;
+}
+
+
+/* BOTONES SELECTOOR, GENERAR Y GUARDAR*/
+
+.botones-control {
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
 }
 
 #selector-cantidad {
-    background-color: rgb(255, 255, 255);
-    color: rgb(5, 99, 223);
+    background-color: var(--color-bg);
+    color: var(--color-button);
     width: 15rem;
 
-    
-    border: 1px solid rgb(5, 99, 223);
+    border: 1px solid var(--color-button);
     border-radius: 8px;
 
-    padding: 10px 18px;
+    padding: 1rem;
 
     font-size: 1rem;
     font-weight: 600;
 }
+
+
+
 #guardar-paleta {
-    background-color: rgb(255, 255, 255);
-    color: rgb(5, 99, 223);
+    background-color: var(--color-bg);
+    color: var(--color-button);
     width: 15rem;
 
-    
-    border: 1px solid rgb(5, 99, 223);
+    border: 1px solid var(--color-button);
     border-radius: 8px;
 
-    padding: 10px 18px;
+    padding: 1rem;
 
     font-size: 1rem;
     font-weight: 600;
+}
+
+/* EFECTO PASAR POR ARRIBA DE LOS BOTONES */
+#guardar-paleta:hover{
+    background-color: var(--color-button);
+    color:var(--color-bg);
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 #generar-paleta {
-    background-color: rgb(255, 255, 255);
-    color: rgb(5, 99, 223);
+    background-color: var(--color-bg);
+    color: var(--color-button);
     width: 15rem;
 
-    border: 1px solid rgb(5, 99, 223);
+    
+    border: 1px solid var(--color-button);
     border-radius: 8px;
 
-    padding: 10px 18px;
-
+    padding: 1rem;
     font-size: 1rem;
     font-weight: 600;
 }
 
+#generar-paleta:hover{
+    background-color: var(--color-button);
+    color:var(--color-bg);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* CONTENEDOR PALETA PRINCIPAL */
 .contenedor-paleta {
     display: flex;
     flex-direction: row;
-    height: 480px;
+    height: 600px;
     width: 100%;
-    border: 2px solid black
+    border: 2px solid var(--color-bg);
+    box-shadow: var(--shadow-md)
 }
 
 .color-tarjeta {
@@ -111,10 +141,12 @@ body {
 
 }
 
+/* INFO DEL COLOR */
 .color-info {
    text-align: center;
 }
 
+/* POP UP PARA GUARDAR */
 .popup {
     position: fixed;
     top: 0;
@@ -123,23 +155,27 @@ body {
     height: 100%;
 
     display:flex;
+
     justify-content: center;
     align-items: center;
 
 }
 
+/* MENSAJE GUARDADO */
 .mensaje-guardado {
     position:fixed;
-
+    
     top:50%;
     left:50%;
 
     transform: translate(-50%, -50%);
 
-    background-color: azure;
+    background-color: var(--color-bg);
     padding: 20px 30px;
 
-    border: 1px solid black;
+    border: 1px solid var(--color-operacion-confirmada);
+    color: var(--color-operacion-confirmada);
+    font-size: 2rem;
 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     font-weight: 600;
@@ -150,65 +186,254 @@ body {
     display:none;
 }
 
+/* TEXTO POP UP */
 .popup-contenido {
-    background-color: blue;
-    padding: 300px;
+    background-color: var(--color-bg);
+    padding: 2rem;
+
     border-radius: 8px;
+    border: 1px solid grey;
 }
 
+.popup-contenido h2{
+   color:var(--color-primary);
+   font-size: 2rem;
+}
 
+/* BOTONES POP UP */
 .botones-pop-up {
     display: flex;
     justify-content: center;
+    padding: 30px;
     gap: 30px;
-    margin-top: 10px;
 }
 
-.guardados-recientes {
-    padding: 20px;
-    margin-left: 0;
-    font-size: 0.75rem;
+#guardar {
+    background-color: rgb(253, 253, 253);
+    color: var(--color-button);
+    padding: 5px;
 
+    border: 1px solid var(--color-button);
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: 0.3s;
 }
 
+#guardar:hover {
+    background-color: var(--color-button);
+    color:white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+#cancelar {
+    background-color: rgb(253, 253, 253);
+    color: var(--color-button);
+    padding: 5px;
+
+    border: 1px solid var(--color-button);
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+#cancelar:hover{
+    background-color: var(--color-button);
+    color:white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+/* TITULO GUARDADOS RECIENTEMENTE */
+.guardados-recientes  {
+    width: 100%;
+}
+
+.guardados-recientes h2 {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-top: 4rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: var(--color-primary);
+}
+
+/* CONTENEDORES COLORES */
 .mini-colores {
     display:flex;
-    border-color: 10px solid black;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-color: 1px d rgb(187, 187, 187);
 }
 
 .mini-color {
-    width: 30px;
-    height: 60px;
-    border-color: 10px solid black;
+    flex: 3;
+    height: 80px;
+    border-color: 1px solid rgb(220, 220, 220);
 }
 
-
-.acciones-Guardado {
-    
-    background-color: white;
-    padding: 10px;
+/* BOTON COPIAR DENTRO DE LAS PALETAS GUARDADAS */
+.acciones-guardado {
     display: flex;
     justify-content: center;
+    width: 100%;
+    background-color: var(--color-bg);
+    padding: 1rem;
 }
 
-.paleta-guardada {
- 
-    border:1px solid black;
-    width: 150px;
+.boton-copiar-paleta {
+    background-color: var(--color-bg);
+    color: var(--color-button);
+
+    padding: 5px;
+
+    border: 1px solid var(--color-button);
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.boton-copiar-paleta:hover {
+    background-color: var(--color-button);
+    color: white;
+    cursor: pointer;
+}
+
+
+.paleta-guardada  {
+    padding: 10px;
+    width: 20rem;
+    border:1px solid rgb(188, 186, 186);    
+}
+
+.paleta-guardada h3 {
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;   
 }
 
 .lista-guardados {
     display:flex;
-    gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
+/* BOTON DE LAS PALETAS PRINCIPALES */
 
-@media (min-width: 760px) {
-    .header-contenido {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+.boton {
+    background-color: rgb(253, 253, 253);
+    color: rgb(5, 99, 223);
+    padding: 10px;
+    
+    border: 1px solid rgb(5, 99, 223);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
 
+    
+}
+
+.boton:hover {
+    background-color: var(--color-button);
+    color:white;
+    cursor: pointer;
+    
+}
+
+.error-nombre {
+    color: crimson;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 760px) {
+
+    .botones-control {
+        flex-direction: column;
+        width: 100%;
     }
+
+    #selector-cantidad,
+    #generar-paleta,
+    #guardar-paleta {
+        width: 100%;
+        max-width: 20rem;
+    }
+
+    .panel-control h2 {
+        font-size: 2.5rem;
+    }
+
+    .contenedor-paleta {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .color-tarjeta {
+        min-height: 120px;
+    }
+    .lista-guardados {
+        padding: 0 1rem;
+    }
+
+    .paleta-guardada {
+        width: 100%;
+        max-width: 20rem;
+    }
+
+    .guardados-recientes h2 {
+        margin-left: 1rem;
+        margin-top: 3rem;
+        font-size: 1.5rem;
+    }
+
+    .popup-contenido {
+        width: 90%;
+        padding: 1.5rem;
+    }
+    
+    #nombre-paleta {
+        width: 100%;
+    }
+    
+    .botones-pop-up {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .header {
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+    }
+   
+}
+
+    #selector-cantidad:focus,
+#generar-paleta:focus,
+#guardar-paleta:focus,
+.boton:focus,
+.boton-copiar-paleta:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+    .footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        margin-top: 3rem;
+        color: var(--color-primary);
 }

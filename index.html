@@ -15,11 +15,7 @@
   <header class="header">
     <div class="header-contenido">
       <h1 class="titulo-principal">Paleta de colores</h1>
-    </div>
-
-    <nav class="nav">
-        <a href="#" class="nav-favoritos"> Mis favoritos</a>
-    </nav>
+    </div>   
   </header>
 
 
@@ -30,24 +26,26 @@
     
 
   <!--SELECTOR PRINCIPAL-->
-  <section class="selector">
     <div class="panel-control">
 
         <h2>Crea una paleta de colores</h2>
-
-        <label for="selector-cantidad">Cantidad de colores</label>
     
-    <select id="selector-cantidad">
-        <option value= "6">6 colores</option>
-        <option value= "8">8 colores</option>
-        <option value= "9">9 colores</option>
-    </select>
+      <div class="botones-control">
+    
+        <select id="selector-cantidad"aria-label="Cantidad de colores">
+          <option value= "6">6 colores</option>
+          <option value= "8">8 colores</option>
+          <option value= "9">9 colores</option>
+        </select>
+    
+        <button id="generar-paleta">Generar paleta</button>
+        <button id="guardar-paleta">Guardar paleta</button>
+    
+      </div>
+    
     </div>
-
-      <button id="generar-paleta">Generar paleta</button>
-      <button id="guardar-paleta">Guardar paleta</button>
     
-  </section>
+  
     
     <!-- BOX DE COLORES -->
     <section class="contenedor-paleta" id="contenedor-paleta">
@@ -66,9 +64,12 @@
           id="nombre-paleta"
           placeholder="Ej: Paleta de verano"
           >
+
+          <p id="error-nombre" class="error-nombre"></p>
+          
           <div class="botones-pop-up">
-              <button id="guardar">Guardar</button>
-              <button id="cancelar">Cancelar</button>
+              <button id="guardar" type="button">Guardar</button>
+              <button id="cancelar"tyoe= "buttton">Cancelar</button>
           </div>
       </div>
 
@@ -97,9 +98,9 @@
      
   <!-- PIE DE PÁGINA -->
   <footer class="footer">
-    <p>PALETA DE COLORES </p>
+    <p>Paleta de colores - Ivo Unzaga </p>
   </footer>
 
-  <script src="./js/javascript.js"> </script>
+  <script src="./js/javascript.js" defer> </script>
 </body>
 </html>
