@@ -61,6 +61,11 @@ permanecen disponibles aunque se recargue la página.
 > La estructura puede variar según la organización final de los archivos
 > del proyecto.
 
+
+#PROMPT IA
+
+https://drive.google.com/drive/folders/1RpHO1DUfxokdBx4t57fvraMFyfh4gv1D?usp=sharing
+
 ## Autor
 
 Desarrollado por \[Ivo Unzaga\]
