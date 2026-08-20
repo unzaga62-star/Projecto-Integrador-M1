@@ -379,13 +379,19 @@ body {
     }
 
     .contenedor-paleta {
-        flex-direction: column;
-        height: auto;
+        display: flex;
+        flex-direction: row;
+        height: 600px;
+        width: 100%;
+        border: 2px solid var(--color-bg);
+        padding: 0;
     }
 
     .color-tarjeta {
+        width: 100%;
         min-height: 120px;
     }
+    
     .lista-guardados {
         padding: 0 1rem;
     }
